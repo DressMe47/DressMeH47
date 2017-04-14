@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Dress_me</string>
+
+    <string name="activity_main.bitton_first">Одежда</string>
+    <string name="activity_main.bitton_second">Обувь</string>
+    <string name="activity_main.bitton_third">Аксессуары</string>
+
+</resources>
