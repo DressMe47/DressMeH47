@@ -21,7 +21,7 @@ public class App extends Application {
                 .addConverterFactory(GsonConverterFactory.create()) //Конвертер, необходимый для преобразования JSON'а в объекты
                 .build();
 
-        APIService myApiService = retrofit.create(APIService.class); //Создаем объект, при помощи которого будем выполнять зап
+        apiService = retrofit.create(APIService.class); //Создаем объект, при помощи которого будем выполнять зап
     }
 
     public static APIService getApi() {
