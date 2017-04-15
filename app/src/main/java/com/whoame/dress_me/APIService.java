@@ -1,5 +1,8 @@
 package com.whoame.dress_me;
 
+import java.util.List;
+
+import retrofit2.Call;
 import retrofit2.http.POST;
 
 /**
@@ -7,7 +10,8 @@ import retrofit2.http.POST;
  */
 
 public interface APIService {
+
     @POST("/list")
-    Call<Repo> loadRepo();
+    Call<List<PostModel>> getData(@);
 
 }
