@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import static android.provider.AlarmClock.EXTRA_MESSAGE;
 
@@ -15,8 +16,8 @@ public class MainEntrance extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entrance);
 
-        final Button button_men = (Button) findViewById(R.id.button_men);
-        final Button button_women = (Button) findViewById(R.id.button_women);
+        final ImageView button_men = (ImageView) findViewById(R.id.button_men);
+        final ImageView button_women = (ImageView) findViewById(R.id.button_women);
 
         button_men.setOnClickListener(this);
         button_women.setOnClickListener(this);

@@ -15,26 +15,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final Button button_first = (Button) findViewById(R.id.button_shoes);
-        final Button button_second = (Button) findViewById(R.id.button_clothes);
-        final Button button_third = (Button) findViewById(R.id.button_accessories);
+        final ImageView button_first = (ImageView) findViewById(R.id.button_shoes);
+        final ImageView button_second = (ImageView) findViewById(R.id.button_clothes);
+        final ImageView button_third = (ImageView) findViewById(R.id.button_accessories);
 
         Intent intent = getIntent();
         String sex = intent.getStringExtra("sex");
 
-        if (sex.equals("women")) {
-            button_first.setBackgroundResource(R.drawable.shoes_w);
-            button_second.setBackgroundResource(R.drawable.close_w);
-            button_third.setBackgroundResource(R.drawable.accessories_w);
-        } else {
-            button_first.setBackgroundResource(R.drawable.shoes_m);
-            button_second.setBackgroundResource(R.drawable.close_m);
-            button_third.setBackgroundResource(R.drawable.accessories_m);
-        }
+        JsonWork.setSex(sex);
 
-        /*Toast toast = Toast.makeText(getApplicationContext(),
-                sex, Toast.LENGTH_SHORT);
-        toast.show();*/
+        if (sex.equals("women")) {
+            button_first.setImageResource(R.drawable.shoes_w);
+            button_second.setImageResource(R.drawable.close_w);
+            button_third.setImageResource(R.drawable.accessories_w);
+        } else {
+            button_first.setImageResource(R.drawable.shoes_m);
+            button_second.setImageResource(R.drawable.close_m);
+            button_third.setImageResource(R.drawable.accessories_m);
+        }
 
         button_first.setOnClickListener(this);
         button_second.setOnClickListener(this);
@@ -45,24 +43,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         Intent intent = new Intent(MainActivity.this, ProductsActivity.class);
-        String sex;
+        String sex = JsonWork.getSex();
         Toast toast = Toast.makeText(getApplicationContext(),
-                findViewById(R.id.button_shoes).getBackground().toString(), Toast.LENGTH_SHORT);
+                sex, Toast.LENGTH_SHORT);
         toast.show();
 
-        if (findViewById(R.id.button_shoes).getBackground().toString().equals("shoes_w")) {
-            intent.putExtra("sex", "women");
-            sex = "women";
-        } else {
-            intent.putExtra("sex", "men");
-            sex = "men";
-        }
+        intent.putExtra("sex", sex);
 
         switch (v.getId()) {
             case R.id.button_shoes: {
-                /*Toast toast = Toast.makeText(getApplicationContext(),
-                        sex, Toast.LENGTH_SHORT);
-                toast.show();*/
+
                 startActivity(intent);
                 break;
             }
