@@ -9,9 +9,6 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-
 
 public class ProductsActivity extends AppCompatActivity {
 
@@ -20,17 +17,12 @@ public class ProductsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_products);
 
-        Toast toast = Toast.makeText(getApplicationContext(),
-                JsonWork.getSex(), Toast.LENGTH_SHORT);
-        toast.show();
-
-
-
-        Call<List<PostModel>> call = APIService.loadRepo();
-        call.enqueue(new Callback<List<PostModel>>() {
+        App.getApi().getData("products").enqueue(new Callback<List<PostModel>>() {
             @Override
             public void onResponse(Call<List<PostModel>> call, Response<List<PostModel>> response) {
-
+                Toast toast = Toast.makeText(getApplicationContext(),
+                        JsonWork.getSex(), Toast.LENGTH_SHORT);
+                toast.show();
             }
 
             @Override

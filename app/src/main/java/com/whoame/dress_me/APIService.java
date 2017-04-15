@@ -4,14 +4,10 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.POST;
-
-/**
- * Created by oprv2 on 15.04.2017.
- */
+import retrofit2.http.Query;
 
 public interface APIService {
 
     @POST("/list")
-    Call<List<PostModel>> getData(@);
-
+    Call<List<PostModel>> getData(@Query("name") String  resourceName);
 }
