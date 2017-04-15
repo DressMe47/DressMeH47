@@ -14,5 +14,18 @@ public class ProductsActivity extends AppCompatActivity {
         Toast toast = Toast.makeText(getApplicationContext(),
                 JsonWork.getSex(), Toast.LENGTH_SHORT);
         toast.show();
+
+        Call<Repo> call = service.loadRepo();
+        call.enqueue(new Callback<Repo>() {
+            @Override
+            public void onResponse(Response<Repo> response) {
+                // Get result Repo from response.body()
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+
+            }
+        });
     }
 }
