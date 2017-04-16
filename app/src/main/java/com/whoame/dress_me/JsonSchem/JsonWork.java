@@ -1,4 +1,4 @@
-package com.whoame.dress_me;
+package com.whoame.dress_me.JsonSchem;
 
 /**
  * Created by oprv2 on 15.04.2017.
@@ -6,7 +6,7 @@ package com.whoame.dress_me;
 
 public class JsonWork {
     public static String sex;
-    private String category;
+    public static String category;
 
     public static void setSex(String sexy) {
         sex = sexy;
@@ -16,11 +16,11 @@ public class JsonWork {
         return sex;
     }
 
-    public String getCategory() {
+    public static String getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public static void setCategory(String categor) {
+        category = categor;
     }
 }

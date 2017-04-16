@@ -1,4 +1,4 @@
-package com.whoame.dress_me;
+package com.whoame.dress_me.JsonSchem;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

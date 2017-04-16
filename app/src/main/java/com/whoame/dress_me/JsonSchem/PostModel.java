@@ -1,4 +1,4 @@
-package com.whoame.dress_me;
+package com.whoame.dress_me.JsonSchem;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;
@@ -37,11 +37,11 @@ public class PostModel {
     @Expose
     private List<Prop> props = null;
 
-    public Integer getId() {
+    public Integer getIdText() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setIdText(Integer id) {
         this.id = id;
     }
 

@@ -28,13 +28,13 @@ public class MainEntrance extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.button_men: {
                 Intent intent = new Intent(MainEntrance.this, MainActivity.class);
-                intent.putExtra("sex", "men");
+                intent.putExtra("sex", "1");
                 startActivity(intent);
                 break;
             }
             case R.id.button_women: {
                 Intent intent = new Intent(MainEntrance.this, MainActivity.class);
-                intent.putExtra("sex", "women");
+                intent.putExtra("sex", "2");
                 startActivity(intent);
                 break;
             }

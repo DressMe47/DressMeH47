@@ -1,4 +1,4 @@
-package com.whoame.dress_me;
+package com.whoame.dress_me.NetWork;
 
 import android.app.Application;
 

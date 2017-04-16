@@ -7,7 +7,7 @@
 
     <application
         android:allowBackup="true"
-        android:name=".App"
+        android:name=".NetWork.App"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
@@ -24,6 +24,15 @@
 
         <activity
             android:name=".MainActivity"
+            android:parentActivityName=".MainEntrance"
+            android:label="@string/app_name">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.whoame.dress_me.MainEntrance" />
+        </activity>
+
+        <activity
+            android:name=".MainClothesActivity"
             android:parentActivityName=".MainEntrance"
             android:label="@string/app_name">
             <meta-data

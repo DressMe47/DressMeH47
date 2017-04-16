@@ -4,9 +4,9 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
+
+import com.whoame.dress_me.JsonSchem.JsonWork;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         JsonWork.setSex(sex);
 
-        if (sex.equals("women")) {
+        if (sex.equals("2")) {
             button_first.setImageResource(R.drawable.shoes_w);
             button_second.setImageResource(R.drawable.close_w);
             button_third.setImageResource(R.drawable.accessories_w);
@@ -42,27 +42,39 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        Intent intent = new Intent(MainActivity.this, ProductsActivity.class);
         String sex = JsonWork.getSex();
-        Toast toast = Toast.makeText(getApplicationContext(),
-                sex, Toast.LENGTH_SHORT);
-        toast.show();
-
-        intent.putExtra("sex", sex);
 
         switch (v.getId()) {
             case R.id.button_shoes: {
-
+                Intent intent = new Intent(MainActivity.this, ProductsActivity.class);
+                intent.putExtra("sex", sex);
+                if (sex.equals("1")) {
+                    intent.putExtra("Category", 37);
+                } else {
+                    intent.putExtra("Category", 34);
+                }
                 startActivity(intent);
                 break;
             }
             case R.id.button_clothes: {
-
+                Intent intent = new Intent(MainActivity.this, MainClothesActivity.class);
+                intent.putExtra("sex", sex);
+                if (sex.equals("1")) {
+                    intent.putExtra("Category", 36);
+                } else {
+                    intent.putExtra("Category", 33);
+                }
                 startActivity(intent);
                 break;
             }
             case R.id.button_accessories: {
-
+                Intent intent = new Intent(MainActivity.this, ProductsActivity.class);
+                intent.putExtra("sex", sex);
+                if (sex.equals("1")) {
+                    intent.putExtra("Category", 38);
+                } else {
+                    intent.putExtra("Category", 35);
+                }
                 startActivity(intent);
                 break;
             }
