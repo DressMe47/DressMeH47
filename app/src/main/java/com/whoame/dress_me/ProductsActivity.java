@@ -22,7 +22,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ProductsActivity extends AppCompatActivity {
-    private RecyclerView recyclerView;
     private ArrayList<ModelItem> modelItems = new ArrayList<ModelItem>();
     private RecyclerAdapter adapter;
     private LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -34,7 +33,7 @@ public class ProductsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_products);
 
         final Intent intent = getIntent();
-        Integer category = intent.getIntExtra("Category", 0);
+        Integer category = intent.getIntExtra("Category", 107);
 
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(layoutManager);
@@ -42,7 +41,7 @@ public class ProductsActivity extends AppCompatActivity {
 
         final List<PostModel> posts = new ArrayList<>();
 
-        App.getApi().getRand(category).enqueue(new Callback<List<PostModel>>() {
+        App.getApi().getSort(category).enqueue(new Callback<List<PostModel>>() {
             @Override
             public void onResponse(Call<List<PostModel>> call, Response<List<PostModel>> response) {
                 posts.addAll(response.body());
@@ -98,6 +97,9 @@ public class ProductsActivity extends AppCompatActivity {
                         toast.show();
                     }
                 });*/
+                Toast toast = Toast.makeText(getApplicationContext(),
+                        "Data", Toast.LENGTH_SHORT);
+                toast.show();
             }
         });
     }

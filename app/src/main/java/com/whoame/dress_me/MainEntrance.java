@@ -1,43 +1,33 @@
 package com.whoame.dress_me;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
+import android.widget.Toast;
 
-import static android.provider.AlarmClock.EXTRA_MESSAGE;
+import com.whoame.dress_me.Fragments.FragmentEntrance;
 
-public class MainEntrance extends AppCompatActivity implements View.OnClickListener {
+public class MainEntrance extends AppCompatActivity implements FragmentEntrance.OnSelectedButtonListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entrance);
-
-        final ImageView button_men = (ImageView) findViewById(R.id.button_men);
-        final ImageView button_women = (ImageView) findViewById(R.id.button_women);
-
-        button_men.setOnClickListener(this);
-        button_women.setOnClickListener(this);
     }
 
     @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.button_men: {
-                Intent intent = new Intent(MainEntrance.this, MainActivity.class);
-                intent.putExtra("sex", "1");
-                startActivity(intent);
-                break;
-            }
-            case R.id.button_women: {
-                Intent intent = new Intent(MainEntrance.this, MainActivity.class);
-                intent.putExtra("sex", "2");
-                startActivity(intent);
-                break;
-            }
-        }
+    public void onButtonSelected(int buttonIndex) {
+        // подключаем FragmentManager
+        FragmentManager fragmentManager = getSupportFragmentManager();
+
+        // Получаем ссылку на второй фрагмент по ID
+        /*FragmentCategories fragmentCategories = (FragmentCategories) fragmentManager.findFragmentById(R.id.fragment);*/
+
+        Toast toast = Toast.makeText(getApplicationContext(),
+                "Data " + String.valueOf(buttonIndex), Toast.LENGTH_SHORT);
+        toast.show();
+        // Выводим нужную информацию
+        /*if (fragmentCategories != null)
+            fragmentCategories.setDescription(buttonIndex);*/
     }
 }

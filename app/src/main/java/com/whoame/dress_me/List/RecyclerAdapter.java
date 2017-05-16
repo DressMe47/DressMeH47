@@ -35,6 +35,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
     public void onBindViewHolder(RecyclerViewHolder holder, int position) {
         final ModelItem modelItem = this.modelItem.get(position);
 
+        //// TODO: 16.05.2017 Перенести загрузку картинок в отдельный класс 
         //тут загрузка текста и фото и заполняет картинками и текстом.
         Picasso.with(context).load(modelItem.getImage()).into(holder.image);
         holder.name.setText(modelItem.getName());

@@ -28,5 +28,9 @@ public interface APIService {
 
     @POST("products/{id}/Like")
     Call<List<PostModel>> setLike(@Path("id") int id);
+
+    @Headers("Content-type:application/json")
+    @GET("categories/?filter={\"parent_id\":{id}}")
+    Call<List<PostModel>> getCategories(@Path("id") int id);
 }
 
