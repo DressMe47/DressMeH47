@@ -32,5 +32,9 @@ public interface APIService {
     @Headers("Content-type:application/json")
     @GET("categories/?filter={\"parent_id\":{id}}")
     Call<List<PostModel>> getCategories(@Path("id") int id);
+
+    @Headers("Content-type:application/json")
+    @GET("categories/{id}/products")
+    Call<List<PostModel>> getProducts(@Path("id") int id);
 }
 

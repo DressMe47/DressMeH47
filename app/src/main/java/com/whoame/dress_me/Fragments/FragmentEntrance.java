@@ -1,5 +1,6 @@
 package com.whoame.dress_me.Fragments;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -7,9 +8,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
-import com.whoame.dress_me.List.ModelItem;
+import com.whoame.dress_me.JsonSchem.ModelItem;
 import com.whoame.dress_me.List.RecyclerAdapter;
 import com.whoame.dress_me.List.RecyclerClickListener;
 import com.whoame.dress_me.R;
@@ -23,19 +23,25 @@ public class FragmentEntrance extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView =
-                inflater.inflate(R.layout.fragment_products, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_recycler, container, false);
+        String internetUrlImage;
+        String internetNameProducts;
 
         final RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
+        recyclerView.setBackgroundColor(Color.WHITE);
 
-        String internetUrlImage = "https://pp.userapi.com/c639616/v639616814/1d8ef/nePTvS0SELs.jpg";
-        String internetNameProducts = String.valueOf(R.string.activity_entrance_button_men);
+        internetUrlImage = "https://cs7056.userapi.com/c638331/v638331814/3fcb8/gvHJvc22jEI.jpg";
+        internetNameProducts = getString(R.string.sex_unisex);
+        modelItems.add(new ModelItem(internetUrlImage, internetNameProducts));
+
+        internetUrlImage = "https://pp.userapi.com/c639616/v639616814/1d8ef/nePTvS0SELs.jpg";
+        internetNameProducts = getString(R.string.sex_men);
         modelItems.add(new ModelItem(internetUrlImage, internetNameProducts));
 
         internetUrlImage = "https://pp.userapi.com/c639616/v639616814/1d8f7/DF2GZkkPMx4.jpg";
-        internetNameProducts = String.valueOf(R.string.activity_entrance_button_women);
+        internetNameProducts = getString(R.string.sex_women);
         modelItems.add(new ModelItem(internetUrlImage, internetNameProducts));
 
         adapter = new RecyclerAdapter(modelItems, getActivity());
@@ -48,17 +54,11 @@ public class FragmentEntrance extends Fragment {
 
             @Override
             public void onItemClick(RecyclerView recyclerView, View itemView, int position) {
-                int buttonIndex = position;
-
                 OnSelectedButtonListener listener = (OnSelectedButtonListener) getActivity();
-                listener.onButtonSelected(buttonIndex);
+                listener.onButtonSexSelected(position);
             }
         });
 
         return rootView;
-    }
-
-    public interface OnSelectedButtonListener {
-        void onButtonSelected(int buttonIndex);
     }
 }

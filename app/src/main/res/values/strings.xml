@@ -1,11 +1,12 @@
 <resources>
     <string name="app_name">Dress Me</string>
 
-    <string name="activity_entrance.button_men">Мужская</string>
-    <string name="activity_entrance.button_women">Женская</string>
+    <string name="sex.unisex">Унисекс</string>
+    <string name="sex.men">Мужская</string>
+    <string name="sex.women">Женская</string>
 
-    <string name="activity_main.button_first">Одежда</string>
-    <string name="activity_main.button_second">Обувь</string>
-    <string name="activity_main.button_third">Аксессуары</string>
+    <string name="categories.clothes">Одежда</string>
+    <string name="categories.shoes">Обувь</string>
+    <string name="categories.accessories">Аксессуары</string>
 
 </resources>

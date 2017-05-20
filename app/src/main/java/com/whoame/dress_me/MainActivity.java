@@ -1,83 +1,82 @@
 package com.whoame.dress_me;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ImageView;
+import android.os.Parcelable;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 
-import com.whoame.dress_me.JsonSchem.JsonWork;
+import com.whoame.dress_me.Fragments.FragmentCategories;
+import com.whoame.dress_me.Fragments.FragmentEntrance;
+import com.whoame.dress_me.Fragments.FragmentProducts;
+import com.whoame.dress_me.Fragments.OnSelectedButtonListener;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+import java.util.ArrayList;
+
+import static com.whoame.dress_me.Constans.RESPONSE_SELECTION;
+import static com.whoame.dress_me.Constans.SEX_SELECTION;
+
+public class MainActivity extends AppCompatActivity implements OnSelectedButtonListener {
+    public int sexSelectionActivity;
+    public int categorySelectionActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_entrance);
 
-        final ImageView button_first = (ImageView) findViewById(R.id.button_shoes);
-        final ImageView button_second = (ImageView) findViewById(R.id.button_clothes);
-        final ImageView button_third = (ImageView) findViewById(R.id.button_accessories);
+        // подключаем FragmentManager
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        // начинаем транзакцию
+        FragmentTransaction ft = fragmentManager.beginTransaction();
+        // Создаем и добавляем первый фрагмент
+        FragmentEntrance fragmentEntrance = new FragmentEntrance();
+        ft.add(R.id.container, fragmentEntrance, "fragmentEntrance");
+        // Подтверждаем операцию
+        ft.commit();
+    }
 
-        Intent intent = getIntent();
-        String sex = intent.getStringExtra("sex");
+    public void onButtonSexSelected(int sexSelection) {
+        // подключаем FragmentManager
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        // начинаем транзакцию
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        FragmentCategories fragmentCategories = new FragmentCategories();
 
-        JsonWork.setSex(sex);
+        sexSelectionActivity = sexSelection;
 
-        if (sex.equals("2")) {
-            button_first.setImageResource(R.drawable.shoes_w);
-            button_second.setImageResource(R.drawable.close_w);
-            button_third.setImageResource(R.drawable.accessories_w);
-        } else {
-            button_first.setImageResource(R.drawable.shoes_m);
-            button_second.setImageResource(R.drawable.close_m);
-            button_third.setImageResource(R.drawable.accessories_m);
-        }
+        // Подготавливаем аргументы
+        Bundle args = new Bundle();
+        args.putInt(SEX_SELECTION, sexSelection);
+        fragmentCategories.setArguments(args);
 
-        button_first.setOnClickListener(this);
-        button_second.setOnClickListener(this);
-        button_third.setOnClickListener(this);
+        fragmentTransaction.add(R.id.container, fragmentCategories, "fragmentCategories");
+        fragmentTransaction.addToBackStack(null);
 
+        // TODO: 18.05.2017 сделать кастомную анимацию
+        fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+        // ft.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out);
+        fragmentTransaction.commit();
+    }
+
+    public void onButtonCategorySelected(int categorySelection) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        FragmentProducts fragmentProducts = new FragmentProducts();
+
+        /*Bundle args = new Bundle();*/
+        /*args.putParcelableArrayList(RESPONSE_SELECTION, (ArrayList<? extends Parcelable>) posts);*/
+        /*fragmentProducts.setArguments(args);*/
+
+        fragmentTransaction.add(R.id.container, fragmentProducts, "fragmentProducts");
+        fragmentTransaction.addToBackStack(null);
+
+        fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_ENTER_MASK);
+        fragmentTransaction.commit();
     }
 
     @Override
-    public void onClick(View v) {
-        String sex = JsonWork.getSex();
+    public void onButtonProductSelected(int index) {
 
-        switch (v.getId()) {
-            case R.id.button_shoes: {
-                Intent intent = new Intent(MainActivity.this, ProductsActivity.class);
-                intent.putExtra("sex", sex);
-                if (sex.equals("1")) {
-                    intent.putExtra("Category", 37);
-                } else {
-                    intent.putExtra("Category", 34);
-                }
-                startActivity(intent);
-                break;
-            }
-            case R.id.button_clothes: {
-                Intent intent = new Intent(MainActivity.this, MainClothesActivity.class);
-                intent.putExtra("sex", sex);
-                if (sex.equals("1")) {
-                    intent.putExtra("Category", 36);
-                } else {
-                    intent.putExtra("Category", 33);
-                }
-                startActivity(intent);
-                break;
-            }
-            case R.id.button_accessories: {
-                Intent intent = new Intent(MainActivity.this, ProductsActivity.class);
-                intent.putExtra("sex", sex);
-                if (sex.equals("1")) {
-                    intent.putExtra("Category", 38);
-                } else {
-                    intent.putExtra("Category", 35);
-                }
-                startActivity(intent);
-                break;
-            }
-        }
     }
 }

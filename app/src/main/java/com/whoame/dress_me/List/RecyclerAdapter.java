@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
+import com.whoame.dress_me.JsonSchem.ModelItem;
 import com.whoame.dress_me.R;
 
 import java.util.ArrayList;

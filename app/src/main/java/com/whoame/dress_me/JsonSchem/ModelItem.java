@@ -1,4 +1,4 @@
-package com.whoame.dress_me.List;
+package com.whoame.dress_me.JsonSchem;
 
 public class ModelItem {
 
