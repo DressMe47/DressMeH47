@@ -35,6 +35,6 @@ public interface APIService {
 
     @Headers("Content-type:application/json")
     @GET("categories/{id}/products")
-    Call<List<PostModel>> getProducts(@Path("id") int id);
+    Call<List<PostModel>> getProductsList(@Path("id") int id);
 }
 

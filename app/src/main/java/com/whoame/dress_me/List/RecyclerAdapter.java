@@ -20,8 +20,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
     private Context context;
 
     public RecyclerAdapter(ArrayList arrayList, Context context){
-        this.modelItem = arrayList;
         this.context = context;
+        this.modelItem = arrayList;
     }
 
     @Override
@@ -36,10 +36,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
     public void onBindViewHolder(RecyclerViewHolder holder, int position) {
         final ModelItem modelItem = this.modelItem.get(position);
 
-        //// TODO: 16.05.2017 Перенести загрузку картинок в отдельный класс 
+        holder.name.setText(modelItem.getName());
+        holder.idPosition.setText(modelItem.getIdPosition().toString());
+        holder.idPosition.setVisibility(View.INVISIBLE);
+        //// TODO: 16.05.2017 Перенести загрузку картинок в отдельный класс
         //тут загрузка текста и фото и заполняет картинками и текстом.
         Picasso.with(context).load(modelItem.getImage()).into(holder.image);
-        holder.name.setText(modelItem.getName());
     }
 
     @Override
@@ -48,6 +50,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
     }
 
     public class RecyclerViewHolder extends RecyclerView.ViewHolder {
+        private TextView idPosition;
         private TextView name;
         private ImageView image;
 
@@ -55,8 +58,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
 
         public RecyclerViewHolder(View itemView) {
             super(itemView);
-            name = (TextView) itemView.findViewById(R.id.r_name);
-            image = (ImageView) itemView.findViewById(R.id.r_image);
+            idPosition = (TextView) itemView.findViewById(R.id.card_id);
+            name = (TextView) itemView.findViewById(R.id.card_name);
+            image = (ImageView) itemView.findViewById(R.id.card_image);
         }
     }
 }

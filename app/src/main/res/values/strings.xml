@@ -9,4 +9,12 @@
     <string name="categories.shoes">Обувь</string>
     <string name="categories.accessories">Аксессуары</string>
 
+    <string name="drawer_item_home">Домой</string>
+    <string name="drawer_item_favorite">Специально для вас</string>
+    <string name="drawer_item_login">LogIn</string>
+    <string name="drawer_item_settings">Настройки</string>
+    <string name="drawer_item_help">Помощь</string>
+    <string name="drawer_item_contact">Связаться с нами</string>
+
+    <string name="fragment_contact_text">Dress Me \nEmail: opr.v2n2@gmail.com \nСайт: http://dressme.lan143.ru/#/</string>
 </resources>

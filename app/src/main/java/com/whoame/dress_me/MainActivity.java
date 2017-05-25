@@ -1,53 +1,145 @@
 package com.whoame.dress_me;
 
+import android.app.Activity;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.Toast;
+
+import com.mikepenz.materialdrawer.Drawer;
+import com.mikepenz.materialdrawer.DrawerBuilder;
+import com.mikepenz.materialdrawer.model.DividerDrawerItem;
+import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
+import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
+
+import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
+import com.mikepenz.materialdrawer.model.interfaces.Nameable;
 import com.whoame.dress_me.Fragments.FragmentCategories;
+import com.whoame.dress_me.Fragments.FragmentContact;
 import com.whoame.dress_me.Fragments.FragmentEntrance;
-import com.whoame.dress_me.Fragments.FragmentProducts;
+import com.whoame.dress_me.Fragments.FragmentProductsList;
 import com.whoame.dress_me.Fragments.OnSelectedButtonListener;
 
-import java.util.ArrayList;
-
-import static com.whoame.dress_me.Constans.RESPONSE_SELECTION;
-import static com.whoame.dress_me.Constans.SEX_SELECTION;
+import static com.whoame.dress_me.Constans.ID_SELECTED;
 
 public class MainActivity extends AppCompatActivity implements OnSelectedButtonListener {
-    public int sexSelectionActivity;
-    public int categorySelectionActivity;
+    private Drawer result;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_entrance);
+        setContentView(R.layout.activity_main);
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        result = new DrawerBuilder()
+                .withActivity(this)
+                .withToolbar(toolbar)
+                .withActionBarDrawerToggle(true)
+                .withHeader(R.layout.drawer_header)
+                .addDrawerItems(
+                        new PrimaryDrawerItem().withName(R.string.drawer_item_home).withIcon(R.drawable.home),
+                        new PrimaryDrawerItem().withName(R.string.drawer_item_favorite).withIcon(R.drawable.star),
+                        new PrimaryDrawerItem().withName(R.string.drawer_item_login).withIcon(R.drawable.login),
+                        new DividerDrawerItem(),
+                        new SecondaryDrawerItem().withName(R.string.drawer_item_help).withIcon(R.drawable.help),
+                        new SecondaryDrawerItem().withName(R.string.drawer_item_settings).withIcon(R.drawable.settings),
+                        new SecondaryDrawerItem().withName(R.string.drawer_item_contact).withIcon(R.drawable.phone).withIdentifier(1)
+                )
+                .withOnDrawerListener(new Drawer.OnDrawerListener() {
+                    @Override
+                    public void onDrawerOpened(View drawerView) {
+                        // Скрываем клавиатуру при открытии Navigation Drawer
+                        InputMethodManager inputMethodManager = (InputMethodManager) MainActivity.this.getSystemService(Activity.INPUT_METHOD_SERVICE);
+                        inputMethodManager.hideSoftInputFromWindow(MainActivity.this.getCurrentFocus().getWindowToken(), 0);
+                    }
+
+                    @Override
+                    public void onDrawerClosed(View drawerView) {
+                    }
+
+                    @Override
+                    public void onDrawerSlide(View drawerView, float slideOffset) {
+                    }
+                })
+                .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+                    @Override
+                    public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+                        FragmentManager fragmentManager = getSupportFragmentManager();
+                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                        switch (position) {
+                            case 1:
+                                fragmentManager.popBackStack();
+                                break;
+                            case 2:
+                                break;
+                            case 3:
+                                break;
+                            case 4:
+                                break;
+                            case 5:
+                                break;
+                            case 6:
+                                break;
+                            case 7:
+                                FragmentContact fragmentContact = new FragmentContact();
+                                fragmentTransaction.add(R.id.container, fragmentContact, "fragmentContact");
+                                fragmentTransaction.addToBackStack(null);
+                                fragmentTransaction.commit();
+                                break;
+                        }
+                        return false;
+                    }
+                })
+                .build();
         // подключаем FragmentManager
         FragmentManager fragmentManager = getSupportFragmentManager();
         // начинаем транзакцию
-        FragmentTransaction ft = fragmentManager.beginTransaction();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         // Создаем и добавляем первый фрагмент
         FragmentEntrance fragmentEntrance = new FragmentEntrance();
-        ft.add(R.id.container, fragmentEntrance, "fragmentEntrance");
+        fragmentTransaction.add(R.id.container, fragmentEntrance, "fragmentEntrance");
         // Подтверждаем операцию
-        ft.commit();
+        fragmentTransaction.commit();
     }
 
-    public void onButtonSexSelected(int sexSelection) {
+    public void onBackPressed() {
+        // Закрываем Navigation Drawer по нажатию системной кнопки "Назад" если он открыт
+        if (result.isDrawerOpen()) {
+            result.closeDrawer();
+        } else {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            int count = fragmentManager.getBackStackEntryCount();
+
+            if (count != 0) {
+                while(count > 0){
+                    fragmentManager.popBackStack();
+                    count--;
+                }
+            } else {
+                super.onBackPressed();
+
+            }
+        }
+    }
+
+    public void onButtonSexSelected(int idSelected) {
         // подключаем FragmentManager
         FragmentManager fragmentManager = getSupportFragmentManager();
         // начинаем транзакцию
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         FragmentCategories fragmentCategories = new FragmentCategories();
 
-        sexSelectionActivity = sexSelection;
-
         // Подготавливаем аргументы
         Bundle args = new Bundle();
-        args.putInt(SEX_SELECTION, sexSelection);
+        args.putInt(ID_SELECTED, idSelected);
         fragmentCategories.setArguments(args);
 
         fragmentTransaction.add(R.id.container, fragmentCategories, "fragmentCategories");
@@ -59,16 +151,16 @@ public class MainActivity extends AppCompatActivity implements OnSelectedButtonL
         fragmentTransaction.commit();
     }
 
-    public void onButtonCategorySelected(int categorySelection) {
+    public void onButtonCategorySelected(int idSelected) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        FragmentProducts fragmentProducts = new FragmentProducts();
+        FragmentProductsList fragmentProductsList = new FragmentProductsList();
 
-        /*Bundle args = new Bundle();*/
-        /*args.putParcelableArrayList(RESPONSE_SELECTION, (ArrayList<? extends Parcelable>) posts);*/
-        /*fragmentProducts.setArguments(args);*/
+        Bundle args = new Bundle();
+        args.putInt(ID_SELECTED,idSelected);
+        fragmentProductsList.setArguments(args);
 
-        fragmentTransaction.add(R.id.container, fragmentProducts, "fragmentProducts");
+        fragmentTransaction.add(R.id.container, fragmentProductsList, "fragmentProductsList");
         fragmentTransaction.addToBackStack(null);
 
         fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_ENTER_MASK);
@@ -77,6 +169,6 @@ public class MainActivity extends AppCompatActivity implements OnSelectedButtonL
 
     @Override
     public void onButtonProductSelected(int index) {
-
+        Toast.makeText(getApplicationContext(), " Welcome!\n" + index, Toast.LENGTH_SHORT).show();
     }
 }
