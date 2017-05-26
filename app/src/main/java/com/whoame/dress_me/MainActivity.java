@@ -76,7 +76,11 @@ public class MainActivity extends AppCompatActivity implements OnSelectedButtonL
                         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                         switch (position) {
                             case 1:
-                                fragmentManager.popBackStack();
+                                int count = fragmentManager.getBackStackEntryCount();
+                                while(count > 0){
+                                    fragmentManager.popBackStack();
+                                    count--;
+                                }
                                 break;
                             case 2:
                                 break;
@@ -108,26 +112,6 @@ public class MainActivity extends AppCompatActivity implements OnSelectedButtonL
         fragmentTransaction.add(R.id.container, fragmentEntrance, "fragmentEntrance");
         // Подтверждаем операцию
         fragmentTransaction.commit();
-    }
-
-    public void onBackPressed() {
-        // Закрываем Navigation Drawer по нажатию системной кнопки "Назад" если он открыт
-        if (result.isDrawerOpen()) {
-            result.closeDrawer();
-        } else {
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            int count = fragmentManager.getBackStackEntryCount();
-
-            if (count != 0) {
-                while(count > 0){
-                    fragmentManager.popBackStack();
-                    count--;
-                }
-            } else {
-                super.onBackPressed();
-
-            }
-        }
     }
 
     public void onButtonSexSelected(int idSelected) {
@@ -170,5 +154,20 @@ public class MainActivity extends AppCompatActivity implements OnSelectedButtonL
     @Override
     public void onButtonProductSelected(int index) {
         Toast.makeText(getApplicationContext(), " Welcome!\n" + index, Toast.LENGTH_SHORT).show();
+    }
+
+    public void onBackPressed() {
+        // Закрываем Navigation Drawer по нажатию системной кнопки "Назад" если он открыт
+        if (result.isDrawerOpen()) {
+            result.closeDrawer();
+        } else {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+
+            if (fragmentManager.getBackStackEntryCount() != 0) {
+                fragmentManager.popBackStack();
+            } else {
+                super.onBackPressed();
+            }
+        }
     }
 }

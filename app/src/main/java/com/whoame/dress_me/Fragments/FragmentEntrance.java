@@ -31,7 +31,6 @@ public class FragmentEntrance extends Fragment {
         final RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(adapter);
         recyclerView.setBackgroundColor(Color.WHITE);
 
         internetUrlImage = "https://cs7056.userapi.com/c638331/v638331814/3fcb8/gvHJvc22jEI.jpg";
