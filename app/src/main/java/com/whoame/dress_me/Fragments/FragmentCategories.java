@@ -42,7 +42,7 @@ public class FragmentCategories extends Fragment {
         recyclerView.setAdapter(adapter);
         recyclerView.setBackgroundColor(Color.WHITE);
 
-        //// TODO: 19.05.2017 Сделать запрос к серверу для получения id категорий пола, картинки и названия
+        //// TODO: 19.05.2017 Дождаться исправлений на бэкенде и сделать запрос к серверу для получения id категорий пола, картинки и названия
         //// This!
 
         //// TODO: 19.05.2017 Как будет добавленны фото на бэкенде для категорий исправить на нормальное добавление

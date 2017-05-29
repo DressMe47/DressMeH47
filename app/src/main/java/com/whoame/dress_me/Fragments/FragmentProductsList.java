@@ -29,11 +29,9 @@ import static com.whoame.dress_me.Constans.ID_SELECTED;
 import static com.whoame.dress_me.Constans.ID_SELECTED_DEFAULT;
 
 public class FragmentProductsList extends Fragment {
-
     private ArrayList<ModelItem> modelItems = new ArrayList<ModelItem>();
     private GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
     private RecyclerAdapter adapter;
-    /*private FailLoadRecyclerAdapter failLoadAdapter;*/
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -53,17 +51,16 @@ public class FragmentProductsList extends Fragment {
         recyclerView.setAdapter(adapter);
         recyclerView.setBackgroundColor(Color.WHITE);
 
-        //// TODO: 20.05.2017 Изменить 107 на id полученные из прошлых фрагментов
         final List<PostModel> posts = new ArrayList<>();
-
-        //82 рабочая id
-        App.getApi().getProductsList(/*parentId*/107).enqueue(new Callback<List<PostModel>>() {
+        //// TODO: 20.05.2017 Как на бэкенде будет исправлены баги с категориями, изменить 107 на id полученные из прошлых фрагментов
+        //82 рабочая id или нет, люблю бэкенд
+        App.getApi().getRand(/*parentId*/107).enqueue(new Callback<List<PostModel>>() {
             @Override
             public void onResponse(Call<List<PostModel>> call, Response<List<PostModel>> response) {
                 posts.addAll(response.body());
                 int responseSize = posts.size();
 
-                Toast.makeText(getActivity(), " WAT?\n" + responseSize, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), " WAT?\n" + response.body(), Toast.LENGTH_SHORT).show();
 
                 if (responseSize != 0) {
                     for (int i = 1; i <= responseSize; i++) {
@@ -73,9 +70,8 @@ public class FragmentProductsList extends Fragment {
                         modelItems.add(new ModelItem(internetUrlImage, internetNameProducts, internerIdProducts));
                     }
                 } else modelItems.add(new ModelItem(-1));
-
-                adapter = new RecyclerAdapter(modelItems, getActivity());
-                recyclerView.setAdapter(adapter);
+                    adapter = new RecyclerAdapter(modelItems, getActivity());
+                    recyclerView.setAdapter(adapter);
             }
 
             @Override

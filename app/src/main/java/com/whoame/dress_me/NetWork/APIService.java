@@ -1,5 +1,6 @@
 package com.whoame.dress_me.NetWork;
 
+import com.example.Example;
 import com.whoame.dress_me.JsonSchem.PostModel;
 
 import java.util.List;
@@ -34,7 +35,7 @@ public interface APIService {
     Call<List<PostModel>> getCategories(@Path("id") int id);
 
     @Headers("Content-type:application/json")
-    @GET("categories/{id}/products")
-    Call<List<PostModel>> getProductsList(@Path("id") int id);
+    @GET("products/{id}/")
+    Call<List<PostModel>> getProduct(@Path("id") int id);
 }
 

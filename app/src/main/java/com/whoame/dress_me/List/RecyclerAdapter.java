@@ -30,17 +30,15 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerViewHolder> {
         return new RecyclerViewHolder(view);
     }
 
-    //// FIXME: 26.05.2017 Оно работает, но нужно в нормальный вид привести....
+    //// FIXME: 26.05.2017 Работает, но нужно в нормальный вид привести....
     @Override
     public void onBindViewHolder(RecyclerViewHolder holder, int position) {
         final ModelItem modelItem = this.modelItem.get(position);
         if (modelItem.getStatus() != -1) {
 
-            holder.name.setText(modelItem.getName());
-            holder.idPosition.setText(modelItem.getIdPosition().toString());
-            holder.idPosition.setVisibility(View.INVISIBLE);
-            //// TODO: 16.05.2017 Перенести загрузку картинок в отдельный класс
             //тут загрузка текста и фото и заполняет картинками и текстом.
+            holder.name.setText(modelItem.getName());
+            //// TODO: 16.05.2017 Перенести загрузку картинок в отдельный класс
             Picasso.with(context).load(modelItem.getImage()).into(holder.image);
         } else {
             holder.name.setText(R.string.fragment_contact_text);

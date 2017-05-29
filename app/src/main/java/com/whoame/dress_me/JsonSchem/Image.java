@@ -4,7 +4,6 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Image {
-
     @SerializedName("id")
     @Expose
     private Integer id;
@@ -38,5 +37,4 @@ public class Image {
     public void setImageSrc(String imageSrc) {
         this.imageSrc = imageSrc;
     }
-
 }

@@ -8,4 +8,6 @@ public interface OnSelectedButtonListener {
     void onButtonSexSelected(int index);
     void onButtonCategorySelected(int index);
     void onButtonProductSelected(int index);
+    void onButtonDrawerSelected(int position);
+    void onDrawerChangeStatus(boolean status);
 }

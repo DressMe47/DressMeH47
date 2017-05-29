@@ -4,7 +4,6 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Prop {
-
     @SerializedName("id")
     @Expose
     private Integer id;
@@ -49,5 +48,4 @@ public class Prop {
     public void setValue(String value) {
         this.value = value;
     }
-
 }

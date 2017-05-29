@@ -5,7 +5,6 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class PostModel {
-
     @SerializedName("id")
     @Expose
     private Integer id;
@@ -20,7 +19,7 @@ public class PostModel {
     private Object price;
     @SerializedName("description")
     @Expose
-    private Object description;
+    private String description;
     @SerializedName("gender")
     @Expose
     private Object gender;
@@ -29,7 +28,7 @@ public class PostModel {
     private Object color;
     @SerializedName("brand")
     @Expose
-    private Object brand;
+    private String brand;
     @SerializedName("images")
     @Expose
     private List<Image> images = null;
@@ -69,11 +68,11 @@ public class PostModel {
         this.price = price;
     }
 
-    public Object getDescription() {
+    public String getDescription() {
         return description;
     }
 
-    public void setDescription(Object description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 
@@ -93,11 +92,11 @@ public class PostModel {
         this.color = color;
     }
 
-    public Object getBrand() {
+    public String getBrand() {
         return brand;
     }
 
-    public void setBrand(Object brand) {
+    public void setBrand(String brand) {
         this.brand = brand;
     }
 
@@ -116,5 +115,4 @@ public class PostModel {
     public void setProps(List<Prop> props) {
         this.props = props;
     }
-
 }
