@@ -11,7 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
-import com.whoame.dress_me.JsonSchem.PostModel;
+import com.whoame.dress_me.Models.JsonSchema.PostModel;
 import com.whoame.dress_me.NetWork.App;
 import com.whoame.dress_me.R;
 

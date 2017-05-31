@@ -7,9 +7,4 @@ package com.whoame.dress_me;
 public class Constans {
     public static final String ID_SELECTED = "selected_id";
     public static final int ID_SELECTED_DEFAULT = -1;
-
-    public static final int WELL = 0;
-
-    public static final boolean OPEN = true;
-    public static final boolean CLOSE = false;
 }

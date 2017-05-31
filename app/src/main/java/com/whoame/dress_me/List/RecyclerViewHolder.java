@@ -12,7 +12,6 @@ import com.whoame.dress_me.R;
  */
 
 public class RecyclerViewHolder extends RecyclerView.ViewHolder {
-    public TextView idPosition;
     public TextView name;
     public ImageView image;
 
@@ -21,7 +20,6 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder {
     public RecyclerViewHolder(View itemView) {
         super(itemView);
 
-        idPosition = (TextView) itemView.findViewById(R.id.card_id);
         name = (TextView) itemView.findViewById(R.id.card_name);
         image = (ImageView) itemView.findViewById(R.id.card_image);
     }

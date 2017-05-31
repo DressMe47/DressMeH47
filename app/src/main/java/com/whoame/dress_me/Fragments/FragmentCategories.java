@@ -1,6 +1,5 @@
 package com.whoame.dress_me.Fragments;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.whoame.dress_me.JsonSchem.ModelItem;
+import com.whoame.dress_me.Models.ModelItem;
 import com.whoame.dress_me.List.RecyclerAdapter;
 import com.whoame.dress_me.List.RecyclerClickListener;
 import com.whoame.dress_me.R;
@@ -40,7 +39,6 @@ public class FragmentCategories extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
-        recyclerView.setBackgroundColor(Color.WHITE);
 
         //// TODO: 19.05.2017 Дождаться исправлений на бэкенде и сделать запрос к серверу для получения id категорий пола, картинки и названия
         //// This!

@@ -1,4 +1,4 @@
-package com.whoame.dress_me.JsonSchem;
+package com.whoame.dress_me.Models.JsonSchema;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;

@@ -1,7 +1,6 @@
 package com.whoame.dress_me.NetWork;
 
-import com.example.Example;
-import com.whoame.dress_me.JsonSchem.PostModel;
+import com.whoame.dress_me.Models.JsonSchema.PostModel;
 
 import java.util.List;
 

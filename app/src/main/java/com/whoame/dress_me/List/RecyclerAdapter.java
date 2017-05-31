@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.squareup.picasso.Picasso;
-import com.whoame.dress_me.JsonSchem.ModelItem;
+import com.whoame.dress_me.Models.ModelItem;
 import com.whoame.dress_me.R;
 
 import java.util.ArrayList;
@@ -34,15 +34,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerViewHolder> {
     @Override
     public void onBindViewHolder(RecyclerViewHolder holder, int position) {
         final ModelItem modelItem = this.modelItem.get(position);
-        if (modelItem.getStatus() != -1) {
-
             //тут загрузка текста и фото и заполняет картинками и текстом.
             holder.name.setText(modelItem.getName());
             //// TODO: 16.05.2017 Перенести загрузку картинок в отдельный класс
             Picasso.with(context).load(modelItem.getImage()).into(holder.image);
-        } else {
-            holder.name.setText(R.string.fragment_contact_text);
-        }
     }
 
     @Override
