@@ -8,30 +8,39 @@ public class PostModel {
     @SerializedName("id")
     @Expose
     private Integer id;
+
     @SerializedName("name")
     @Expose
     private String name;
+
     @SerializedName("category_id")
     @Expose
     private Integer categoryId;
+
     @SerializedName("price")
     @Expose
     private Object price;
+
     @SerializedName("description")
     @Expose
     private String description;
+
     @SerializedName("gender")
     @Expose
     private Object gender;
+
     @SerializedName("color")
     @Expose
     private Object color;
+
     @SerializedName("brand")
     @Expose
     private String brand;
+
     @SerializedName("images")
     @Expose
     private List<Image> images = null;
+
     @SerializedName("props")
     @Expose
     private List<Prop> props = null;

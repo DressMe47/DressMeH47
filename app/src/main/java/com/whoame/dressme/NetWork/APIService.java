@@ -1,5 +1,6 @@
 package com.whoame.dressme.NetWork;
 
+import com.whoame.dressme.Models.JsonSchema.DetailedProduct.Product;
 import com.whoame.dressme.Models.JsonSchema.Item;
 import com.whoame.dressme.Models.JsonSchema.ProductList.PostModel;
 
@@ -37,6 +38,6 @@ public interface APIService {
 
     @Headers("Content-type:application/json")
     @GET("products/{id}/")
-    Call<List<PostModel>> getProduct(@Path("id") int id);
+    Call<Product> getProduct(@Path("id") int id);
 }
 

@@ -7,12 +7,15 @@ public class Prop {
     @SerializedName("id")
     @Expose
     private Integer id;
+
     @SerializedName("product_id")
     @Expose
     private Integer productId;
+
     @SerializedName("property_id")
     @Expose
     private Integer propertyId;
+
     @SerializedName("value")
     @Expose
     private String value;

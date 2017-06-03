@@ -108,7 +108,6 @@ public class MainActivity extends AppCompatActivity implements OnSelectedButtonL
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         // Создаем и добавляем первый фрагмент
         FragmentEntrance fragmentEntrance = new FragmentEntrance();
-        //Создаем и добавляем второй фрагмент
         fragmentTransaction.add(R.id.container, fragmentEntrance, "fragmentEntrance");
         // Подтверждаем операцию
         fragmentTransaction.commit();
@@ -123,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements OnSelectedButtonL
         args.putInt(ID_SELECTED, idSelected);
         fragmentProductsList.setArguments(args);
 
-        fragmentTransaction.add(R.id.container, fragmentProductsList, "fragmentProductsList");
+        fragmentTransaction.replace(R.id.container, fragmentProductsList, "fragmentProductsList");
         fragmentTransaction.addToBackStack(null);
 
         fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_ENTER_MASK);

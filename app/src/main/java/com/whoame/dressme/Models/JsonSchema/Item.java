@@ -11,12 +11,15 @@ public class Item {
     @SerializedName("id")
     @Expose
     private String id;
+
     @SerializedName("name")
     @Expose
     private String name;
+
     @SerializedName("parent_id")
     @Expose
     private String parentId;
+
     @SerializedName("gender")
     @Expose
     private int gender;

@@ -7,9 +7,11 @@ public class Image {
     @SerializedName("id")
     @Expose
     private Integer id;
+
     @SerializedName("product_id")
     @Expose
     private Integer productId;
+
     @SerializedName("image_src")
     @Expose
     private String imageSrc;
