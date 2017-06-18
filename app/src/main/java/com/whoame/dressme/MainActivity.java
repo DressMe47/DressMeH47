@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements OnSelectedButtonL
         args.putInt(ID_SELECTED, idSelected);
         fragmentProductsList.setArguments(args);
 
-        fragmentTransaction.replace(R.id.container, fragmentProductsList, "fragmentProductsList");
+        fragmentTransaction.add(R.id.container, fragmentProductsList, "fragmentProductsList");
         fragmentTransaction.addToBackStack(null);
 
         fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_ENTER_MASK);

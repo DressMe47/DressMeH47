@@ -17,4 +17,5 @@
     <string name="drawer_item_contact">Связаться с нами</string>
 
     <string name="fragment_contact_text">Dress Me \nEmail: opr.v2n2@gmail.com \nСайт: http://dressme.lan143.ru/#/</string>
+    <string name="title_activity_main2">Main2Activity</string>
 </resources>

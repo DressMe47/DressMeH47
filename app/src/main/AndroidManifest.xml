@@ -1,28 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.whoame.dressme" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
+        android:name=".NetWork.App"
         android:allowBackup="true"
-        android:name="com.whoame.dressme.NetWork.App"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
 
         <activity
-            android:name="com.whoame.dressme.MainActivity"
-            android:label="@string/app_name" >
+            android:name="com.whoame.dressme.SplashActivity"
+            android:theme="@style/SplashTheme" >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+
             </intent-filter>
         </activity>
 
-    </application>
+        <activity android:name="com.whoame.dressme.MainActivity" />
 
+    </application>
 </manifest>
