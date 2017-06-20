@@ -16,6 +16,7 @@ import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.whoame.dressme.Fragments.FragmentContact;
+import com.whoame.dressme.Fragments.FragmentCatalog;
 import com.whoame.dressme.Fragments.FragmentEntrance;
 import com.whoame.dressme.Fragments.FragmentProduct;
 import com.whoame.dressme.Fragments.FragmentProductsList;
@@ -80,6 +81,13 @@ public class MainActivity extends AppCompatActivity implements OnSelectedButtonL
                                 }
                                 break;
                             case 2:
+                                FragmentEntrance fragmentEntrance = new FragmentEntrance();
+
+                                fragmentTransaction.add(R.id.container, fragmentEntrance, "fragmentEntrance");
+                                fragmentTransaction.addToBackStack(null);
+
+                                fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_ENTER_MASK);
+                                fragmentTransaction.commit();
                                 break;
                             case 3:
                                 break;
@@ -107,8 +115,8 @@ public class MainActivity extends AppCompatActivity implements OnSelectedButtonL
         // начинаем транзакцию
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         // Создаем и добавляем первый фрагмент
-        FragmentEntrance fragmentEntrance = new FragmentEntrance();
-        fragmentTransaction.add(R.id.container, fragmentEntrance, "fragmentEntrance");
+        FragmentCatalog fragmentCatalog = new FragmentCatalog();
+        fragmentTransaction.add(R.id.container, fragmentCatalog, "fragmentCatalog");
         // Подтверждаем операцию
         fragmentTransaction.commit();
     }

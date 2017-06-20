@@ -13,8 +13,8 @@ import android.widget.TextView;
 import com.whoame.dressme.Models.ModelItem;
 import com.whoame.dressme.Models.JsonSchema.ProductList.PostModel;
 /*import com.whoame.dressme.List.FailLoadRecyclerAdapter;*/
-import com.whoame.dressme.List.RecyclerAdapter;
-import com.whoame.dressme.List.RecyclerClickListener;
+import com.whoame.dressme.List.RecyclerView.RecyclerAdapter;
+import com.whoame.dressme.List.RecyclerView.RecyclerClickListener;
 import com.whoame.dressme.NetWork.App;
 import com.whoame.dressme.R;
 
