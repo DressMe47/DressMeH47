@@ -1,8 +1,19 @@
 apply plugin: 'com.android.application'
+//apply plugin: 'io.fabric'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'realm-android'
+
+ext {
+    supportVersion = '25.3.1'
+    dagger = '2.7'
+    retrofit = '2.0.2'
+    baseUrl = ""
+}
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.0"
+    buildToolsVersion "26.0.0"
     defaultConfig {
         applicationId 'com.whoame.dressme'
         minSdkVersion 14
@@ -10,6 +21,7 @@ android {
         versionName "0.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -17,12 +29,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    android {
-        defaultConfig {
-            resConfigs "ru"
-        }
+
+    defaultConfig {
+        resConfigs "ru"
     }
-    productFlavors {
+
+    applicationVariants.all { variant ->
+        variant.buildConfigField "String", "BASE_URL", "\"$baseUrl\""
     }
 }
 
@@ -34,13 +47,41 @@ dependencies {
     compile('com.mikepenz:materialdrawer:5.9.1@aar') {
         transitive = true
     }
-    compile 'com.squareup.retrofit2:retrofit:2.2.0'
-    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
-    compile 'com.android.support:appcompat-v7:25.1.1'
-    compile 'com.android.support:recyclerview-v7:25.1.1'
-    compile 'com.android.support:cardview-v7:25.1.1'
+    compile "com.android.support:appcompat-v7:$supportVersion"
+    compile "com.android.support:recyclerview-v7:$supportVersion"
+    compile "com.android.support:cardview-v7:$supportVersion"
+    compile 'org.jetbrains.kotlinx:kotlinx-coroutines-core:0.13'
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlinVersion"
+
+    compile "com.google.dagger:dagger:$dagger"
+    kapt "com.google.dagger:dagger-compiler:$dagger"
+
+    compile 'com.google.code.gson:gson:2.7'
     compile 'com.squareup.picasso:picasso:2.5.2'
-    compile 'com.bignerdranch.android:expandablerecyclerview:3.0.0-RC1'
-    compile 'com.android.support.constraint:constraint-layout:+'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.2.0'
+    compile "com.squareup.retrofit2:retrofit:$retrofit"
+    compile "com.squareup.retrofit2:converter-gson:$retrofit"
+    compile "com.squareup.retrofit2:adapter-rxjava:$retrofit"
+
+    compile 'io.reactivex:rxandroid:1.2.0'
+    compile 'io.reactivex:rxjava:1.1.5'
+
+    compile 'com.arello-mobile:moxy:1.4.6'
+    compile 'com.arello-mobile:moxy-app-compat:1.4.6'
+    kapt 'com.arello-mobile:moxy-compiler:1.4.6'
+
+    provided 'org.glassfish:javax.annotation:10.0-b28'
+    compile 'com.github.orangegangsters:swipy:1.2.3@aar'
+    compile 'com.alimuzaffar.lib:pinentryedittext:1.3.1'
+    compile('com.mikepenz:materialdrawer:5.6.0@aar') { transitive = true }
+
+    //compile("com.crashlytics.sdk.android:crashlytics:2.6.7@aar") {
+    //    transitive = true
+    //}
+
+    compile ('cn.trinea.android.view.autoscrollviewpager:android-auto-scroll-view-pager:1.1.2') {
+        exclude module: 'support-v4'
+    }
+    compile 'org.greenrobot:eventbus:3.0.0'
     testCompile 'junit:junit:4.12'
 }
